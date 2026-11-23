@@ -1,0 +1,20 @@
+--- a/skills/gnomad_database/scripts/search_variants.py
++++ b/skills/gnomad_database/scripts/search_variants.py
+@@ -101,7 +101,7 @@
+     data["data"]["gene"]["variants"] = variants
+ 
+   result = json.dumps(data, indent=2)
+-  os.makedirs(os.path.dirname(output_path), exist_ok=True)
++  os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+   with open(output_path, "w") as f:
+     f.write(result)
+     f.write("\n")
+@@ -168,7 +168,7 @@
+       url, method="POST", json_body={"query": query, "variables": variables}
+   )
+   result = json.dumps(response_data, indent=2)
+-  os.makedirs(os.path.dirname(output_path), exist_ok=True)
++  os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+   with open(output_path, "w") as f:
+     f.write(result)
+     f.write("\n")

@@ -1,0 +1,83 @@
+{
+  "upstream": {
+    "total_tasks": 50,
+    "passed": 6,
+    "pass_rate": 0.12,
+    "by_family": {
+      "clinvar_coord": {
+        "n": 10,
+        "pass": 0,
+        "failures": {
+          "silent_data_corruption": 10
+        }
+      },
+      "gnomad_cli": {
+        "n": 10,
+        "pass": 0,
+        "failures": {
+          "cli_relative_output_crash": 10
+        }
+      },
+      "cross_db_chain": {
+        "n": 10,
+        "pass": 0,
+        "failures": {
+          "upstream_coord_corruption": 10
+        }
+      },
+      "protein_struct": {
+        "n": 10,
+        "pass": 0,
+        "failures": {
+          "http_403_missing_user_agent": 10
+        }
+      },
+      "lit_and_go": {
+        "n": 10,
+        "pass": 6,
+        "failures": {
+          "concatenated_invalid_json": 4
+        }
+      }
+    }
+  },
+  "patched": {
+    "total_tasks": 50,
+    "passed": 45,
+    "pass_rate": 0.9,
+    "by_family": {
+      "clinvar_coord": {
+        "n": 10,
+        "pass": 10,
+        "failures": {}
+      },
+      "gnomad_cli": {
+        "n": 10,
+        "pass": 10,
+        "failures": {}
+      },
+      "cross_db_chain": {
+        "n": 10,
+        "pass": 9,
+        "failures": {
+          "vep_timeout_heavy_plugins": 1
+        }
+      },
+      "protein_struct": {
+        "n": 10,
+        "pass": 9,
+        "failures": {
+          "afdb_error": 1
+        }
+      },
+      "lit_and_go": {
+        "n": 10,
+        "pass": 7,
+        "failures": {
+          "arxiv_count_mismatch": 2,
+          "runtime_crash": 1
+        }
+      }
+    }
+  }
+}

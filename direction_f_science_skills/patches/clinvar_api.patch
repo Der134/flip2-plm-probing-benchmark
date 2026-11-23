@@ -1,0 +1,100 @@
+--- a/skills/clinvar_database/scripts/clinvar_api.py
++++ b/skills/clinvar_database/scripts/clinvar_api.py
+@@ -250,20 +250,20 @@
+     if not variant_ids:
+       return []
+ 
+-    # Ensure all IDs are strings and join with commas
+-    ids_str = ','.join(map(str, variant_ids))
+-
+-    params = {'db': 'clinvar', 'id': ids_str, 'retmode': 'json'}
+-
+-    response = self._request('esummary.fcgi', params)
+-    data = self._parse_json(response.content)
+-
+-    result_data = data.get('result', {})
+-    uids = result_data.get('uids', [])
++    # Chunk IDs (<=200 per GET) to avoid HTTP 414 URI Too Long on large searches.
++    batched_records = []
++    str_ids = [str(v) for v in variant_ids]
++    for start in range(0, len(str_ids), 200):
++      batch_ids = str_ids[start:start + 200]
++      params = {'db': 'clinvar', 'id': ','.join(batch_ids), 'retmode': 'json'}
++      response = self._request('esummary.fcgi', params)
++      data = self._parse_json(response.content)
++      result_data = data.get('result', {})
++      for uid in result_data.get('uids', []):
++        batched_records.append((uid, result_data.get(uid, {})))
+ 
+     summaries = []
+-    for uid in uids:
+-      var_data = result_data.get(uid, {})
++    for uid, var_data in batched_records:
+       significance = 'Unknown'
+       review_status = 'Unknown'
+       last_evaluated = 'Unknown'
+@@ -484,25 +484,22 @@
+         'dbsnp_rsid': None,
+     }
+ 
+-    # Try SequenceLocation nodes (GRCh38 preferred)
+-    for loc in root.findall('.//SequenceLocation'):
+-      if loc.attrib.get('Assembly') == 'GRCh38':
+-        info['chromosome'] = loc.attrib.get('Chr')
+-        info['position_start'] = loc.attrib.get('start')
+-        info['position_stop'] = loc.attrib.get('stop')
+-        info['reference_allele'] = loc.attrib.get('referenceAllele')
+-        info['alternate_allele'] = loc.attrib.get('alternateAllele')
+-        break
+-
+-    # Fallback: first SequenceLocation if GRCh38 not found
+-    if info['chromosome'] is None:
+-      first_loc = root.find('.//SequenceLocation')
+-      if first_loc is not None:
+-        info['chromosome'] = first_loc.attrib.get('Chr')
+-        info['position_start'] = first_loc.attrib.get('start')
+-        info['position_stop'] = first_loc.attrib.get('stop')
+-        info['reference_allele'] = first_loc.attrib.get('referenceAllele')
+-        info['alternate_allele'] = first_loc.attrib.get('alternateAllele')
++    # Target variant-level SequenceLocation (not Gene-level span which appears first in VCV XML)
++    variant_locs = (
++        root.findall('.//SimpleAllele/Location/SequenceLocation')
++        + root.findall('.//Measure/SequenceLocation')
++        + root.findall('.//SequenceLocation')
++    )
++    chosen = next(
++        (loc for loc in variant_locs if loc.attrib.get('Assembly') == 'GRCh38'),
++        variant_locs[0] if variant_locs else None,
++    )
++    if chosen is not None:
++      info['chromosome'] = chosen.attrib.get('Chr')
++      info['position_start'] = chosen.attrib.get('positionVCF') or chosen.attrib.get('start')
++      info['position_stop'] = chosen.attrib.get('stop')
++      info['reference_allele'] = chosen.attrib.get('referenceAlleleVCF') or chosen.attrib.get('referenceAllele')
++      info['alternate_allele'] = chosen.attrib.get('alternateAlleleVCF') or chosen.attrib.get('alternateAllele')
+ 
+     # Cytogenetic band
+     cyto_node = root.find('.//CytogeneticLocation')
+@@ -594,13 +591,15 @@
+   ) -> dict[str, str | None] | None:
+     """Extracts structural variant details for CNVs."""
+     # Only present for structural variants / CNVs
+-    loc = None
+-    for seq_loc in root.findall('.//SequenceLocation'):
+-      if seq_loc.attrib.get('Assembly') == 'GRCh38':
+-        loc = seq_loc
+-        break
+-    if loc is None:
+-      loc = root.find('.//SequenceLocation')
++    sv_locs = (
++        root.findall('.//SimpleAllele/Location/SequenceLocation')
++        + root.findall('.//Measure/SequenceLocation')
++        + root.findall('.//SequenceLocation')
++    )
++    loc = next(
++        (seq_loc for seq_loc in sv_locs if seq_loc.attrib.get('Assembly') == 'GRCh38'),
++        sv_locs[0] if sv_locs else None,
++    )
+ 
+     if loc is None:
+       return None

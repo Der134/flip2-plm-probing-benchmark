@@ -1,0 +1,11 @@
+--- a/skills/gnomad_database/scripts/get_variant_frequency.py
++++ b/skills/gnomad_database/scripts/get_variant_frequency.py
+@@ -149,7 +149,7 @@
+       url, method="POST", json_body={"query": query, "variables": variables}
+   )
+   result = json.dumps(response_data, indent=2)
+-  os.makedirs(os.path.dirname(output_path), exist_ok=True)
++  os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+   with open(output_path, "w") as f:
+     f.write(result)
+     f.write("\n")

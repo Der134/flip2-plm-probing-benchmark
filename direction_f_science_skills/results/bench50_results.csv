@@ -1,0 +1,105 @@
+task_id,family,mode,passed,failure_type,seconds,detail
+T01,clinvar_coord,upstream,False,silent_data_corruption,0.95,"got ('10', '43077069', None, None) != expected ('10', '43113629', 'C', 'G')"
+T02,clinvar_coord,upstream,False,silent_data_corruption,0.87,"got ('12', '25205246', None, None) != expected ('12', '25245350', 'C', 'T')"
+T03,clinvar_coord,upstream,False,silent_data_corruption,1.63,"got ('17', '43044295', None, None) != expected ('17', '43106487', 'A', 'C')"
+T04,clinvar_coord,upstream,False,silent_data_corruption,1.08,"got ('17', '43044295', None, None) != expected ('17', '43071135', 'TATGT', 'G')"
+T05,clinvar_coord,upstream,False,silent_data_corruption,0.84,"got ('17', '43044295', None, None) != expected ('17', '43094819', 'GT', 'G')"
+T06,clinvar_coord,upstream,False,silent_data_corruption,0.87,"got ('1', '161303600', None, None) != expected ('1', '161306789', 'C', 'T')"
+T07,clinvar_coord,upstream,False,silent_data_corruption,0.75,"got ('8', '132866958', None, None) != expected ('8', '132873222', 'G', 'A')"
+T08,clinvar_coord,upstream,False,silent_data_corruption,0.97,"got ('11', '47331406', None, None) != expected ('11', '47342138', 'TAC', 'T')"
+T09,clinvar_coord,upstream,False,silent_data_corruption,0.6,"got ('18', '31591877', None, None) != expected ('18', '31592974', 'G', 'C')"
+T10,clinvar_coord,upstream,False,silent_data_corruption,0.94,"got ('17', '7668421', None, None) != expected ('17', '7673835', 'C', 'A')"
+T11,gnomad_cli,upstream,False,cli_relative_output_crash,6.47,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T12,gnomad_cli,upstream,False,cli_relative_output_crash,11.99,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T13,gnomad_cli,upstream,False,cli_relative_output_crash,12.01,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T14,gnomad_cli,upstream,False,cli_relative_output_crash,6.03,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T15,gnomad_cli,upstream,False,cli_relative_output_crash,6.0,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T16,gnomad_cli,upstream,False,cli_relative_output_crash,5.99,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T17,gnomad_cli,upstream,False,cli_relative_output_crash,6.0,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T18,gnomad_cli,upstream,False,cli_relative_output_crash,6.0,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T19,gnomad_cli,upstream,False,cli_relative_output_crash,5.98,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T20,gnomad_cli,upstream,False,cli_relative_output_crash,6.02,FileNotFoundError: [WinError 3] 系统找不到指定的路径。: ''
+T21,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (10:43077069 ref=None alt=None)
+T22,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (12:25205246 ref=None alt=None)
+T23,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (17:43044295 ref=None alt=None)
+T24,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (17:43044295 ref=None alt=None)
+T25,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (17:43044295 ref=None alt=None)
+T26,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (1:161303600 ref=None alt=None)
+T27,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (8:132866958 ref=None alt=None)
+T28,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (11:47331406 ref=None alt=None)
+T29,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (18:31591877 ref=None alt=None)
+T30,cross_db_chain,upstream,False,upstream_coord_corruption,0.0,missing ref/alt from ClinVar (17:7668421 ref=None alt=None)
+T31,protein_struct,upstream,False,http_403_missing_user_agent,1.9,HTTP 403 empty User-Agent
+T32,protein_struct,upstream,False,http_403_missing_user_agent,2.1,HTTP 403 empty User-Agent
+T33,protein_struct,upstream,False,http_403_missing_user_agent,1.65,HTTP 403 empty User-Agent
+T34,protein_struct,upstream,False,http_403_missing_user_agent,1.61,HTTP 403 empty User-Agent
+T35,protein_struct,upstream,False,http_403_missing_user_agent,1.59,HTTP 403 empty User-Agent
+T36,protein_struct,upstream,False,http_403_missing_user_agent,1.67,HTTP 403 empty User-Agent
+T37,protein_struct,upstream,False,http_403_missing_user_agent,1.66,HTTP 403 empty User-Agent
+T38,protein_struct,upstream,False,http_403_missing_user_agent,1.44,HTTP 403 empty User-Agent
+T39,protein_struct,upstream,False,http_403_missing_user_agent,1.51,HTTP 403 empty User-Agent
+T40,protein_struct,upstream,False,http_403_missing_user_agent,1.48,HTTP 403 empty User-Agent
+T41,lit_and_go,upstream,False,concatenated_invalid_json,0.31,Expecting value: line 1 column 1 (char 0)
+T42,lit_and_go,upstream,False,concatenated_invalid_json,3.0,Extra data: line 22 column 1 (char 1698)
+T43,lit_and_go,upstream,True,,2.98,
+T44,lit_and_go,upstream,False,concatenated_invalid_json,3.02,Expecting value: line 1 column 1 (char 0)
+T45,lit_and_go,upstream,False,concatenated_invalid_json,2.97,Extra data: line 21 column 1 (char 1671)
+T46,lit_and_go,upstream,True,,28.24,
+T47,lit_and_go,upstream,True,,1.08,
+T48,lit_and_go,upstream,True,,1.11,
+T49,lit_and_go,upstream,True,,1.04,
+T50,lit_and_go,upstream,True,,33.58,
+T01,clinvar_coord,patched,True,,1.74,
+T02,clinvar_coord,patched,True,,1.27,
+T03,clinvar_coord,patched,True,,1.29,
+T04,clinvar_coord,patched,True,,1.32,
+T05,clinvar_coord,patched,True,,1.04,
+T06,clinvar_coord,patched,True,,0.88,
+T07,clinvar_coord,patched,True,,0.93,
+T08,clinvar_coord,patched,True,,0.84,
+T09,clinvar_coord,patched,True,,0.82,
+T10,clinvar_coord,patched,True,,0.58,
+T11,gnomad_cli,patched,True,,6.47,
+T12,gnomad_cli,patched,True,,11.97,
+T13,gnomad_cli,patched,True,,12.04,
+T14,gnomad_cli,patched,True,,6.03,
+T15,gnomad_cli,patched,True,,5.97,
+T16,gnomad_cli,patched,True,,6.0,
+T17,gnomad_cli,patched,True,,5.99,
+T18,gnomad_cli,patched,True,,5.98,
+T19,gnomad_cli,patched,True,,6.0,
+T20,gnomad_cli,patched,True,,5.99,
+T21,cross_db_chain,patched,True,,12.45,msq=missense_variant
+T22,cross_db_chain,patched,True,,18.71,msq=missense_variant
+T23,cross_db_chain,patched,True,,28.63,msq=missense_variant
+T24,cross_db_chain,patched,True,,25.99,msq=frameshift_variant
+T25,cross_db_chain,patched,True,,28.17,msq=frameshift_variant
+T26,cross_db_chain,patched,True,,31.53,msq=missense_variant
+T27,cross_db_chain,patched,True,,8.6,msq=splice_donor_variant
+T28,cross_db_chain,patched,True,,25.19,msq=frameshift_variant
+T29,cross_db_chain,patched,False,vep_timeout_heavy_plugins,45.01,TIMEOUT after 45s
+T30,cross_db_chain,patched,True,,19.63,msq=missense_variant
+T31,protein_struct,patched,True,,5.56,len=393
+T32,protein_struct,patched,True,,9.19,len=1114
+T33,protein_struct,patched,True,,7.46,len=1863
+T34,protein_struct,patched,True,,4.2,len=189
+T35,protein_struct,patched,True,,6.42,len=1130
+T36,protein_struct,patched,True,,4.16,len=147
+T37,protein_struct,patched,True,,4.39,len=248
+T38,protein_struct,patched,False,afdb_error,1.52,"Fold data for UniProt ID: P01266
+
+[!] Error: UniProt ID 'P01266' was not found in the AlphaFold Database.
+    Please double-check the ID for typos, or verify it has an AFDB entry.
+"
+T39,protein_struct,patched,True,,8.08,len=1274
+T40,protein_struct,patched,True,,5.37,len=594
+T41,lit_and_go,patched,False,arxiv_count_mismatch,0.4,
+T42,lit_and_go,patched,True,,2.99,
+T43,lit_and_go,patched,True,,3.0,
+T44,lit_and_go,patched,False,arxiv_count_mismatch,3.01,
+T45,lit_and_go,patched,True,,3.0,
+T46,lit_and_go,patched,True,,1.7,
+T47,lit_and_go,patched,False,runtime_crash,45.01,TIMEOUT after 45s
+T48,lit_and_go,patched,True,,27.5,
+T49,lit_and_go,patched,True,,1.16,
+T50,lit_and_go,patched,True,,1.28,
