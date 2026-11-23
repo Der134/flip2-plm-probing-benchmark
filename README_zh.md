@@ -1,6 +1,6 @@
 # 蛋白质语言模型在真实分布偏移下的缩放规律评测（FLIP2）与科研 Agent 工具链可靠性审计（ScienceBench-Bio50）
 
-[English](README.md) | [简体中文](README_zh.md)
+[English](README.md) | [简体中文](README_zh.md) | **[📄 正式学术双栏 PDF 报告 (`FLIP2_Technical_Report.pdf`)](FLIP2_Technical_Report.pdf)** | [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md)
 
 本仓库包含两个相互衔接、全部可一键复现的 **AI for Science 开源基准项目**：
 

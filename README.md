@@ -1,6 +1,6 @@
 # Protein Language Models Under Real Distribution Shifts (`FLIP2`) & Scientific Agent Tool Reliability (`ScienceBench-Bio50`)
 
-[English](README.md) | [简体中文](README_zh.md)
+[English](README.md) | [简体中文](README_zh.md) | **[📄 Formal Academic PDF (`FLIP2_Technical_Report.pdf`)](FLIP2_Technical_Report.pdf)** | [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md)
 
 This repository contains two reproducible, complementary open-science benchmarks built to guide practical **AI-for-Science protein engineering & variant interpretation workflows**:
 
