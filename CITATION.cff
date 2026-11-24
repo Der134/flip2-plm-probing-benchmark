@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use the FLIP2 probing/LoRA benchmark or ScienceBench-Bio50 audit in your research, please cite it using these metadata."
+type: software
+title: "Protein Language Models Under Real Distribution Shifts (FLIP2) & Scientific Agent Tool Reliability (ScienceBench-Bio50)"
+authors:
+  - alias: "Der134"
+date-released: 2026-11-24
+version: "1.0.0"
+license: MIT
+repository-code: "https://github.com/Der134/flip2-plm-probing-benchmark"
+url: "https://github.com/Der134/flip2-plm-probing-benchmark"
+keywords:
+  - ai4science
+  - protein-language-models
+  - esm2
+  - flip2
+  - out-of-distribution
+  - uncertainty-quantification
+  - lora
+  - bioinformatics-agents

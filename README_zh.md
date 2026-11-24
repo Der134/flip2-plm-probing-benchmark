@@ -1,6 +1,6 @@
 # 蛋白质语言模型在真实分布偏移下的缩放规律评测（FLIP2）与科研 Agent 工具链可靠性审计（ScienceBench-Bio50）
 
-[English](README.md) | [简体中文](README_zh.md) | **[📄 正式学术双栏 PDF 报告 (`FLIP2_Technical_Report.pdf`)](FLIP2_Technical_Report.pdf)** | [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md)
+[English](README.md) | [简体中文](README_zh.md) | **[📄 正式学术双栏 PDF 报告 (`FLIP2_Technical_Report.pdf`)](FLIP2_Technical_Report.pdf)** | [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md) | **[🧪 姊妹篇：小分子 ADMET OOD 保形基准](https://github.com/Der134/tdc-admet-ood-conformal-benchmark)**
 
 本仓库包含两个相互衔接、全部可一键复现的 **AI for Science 开源基准项目**：
 
@@ -16,7 +16,7 @@
 > **一句话给蛋白工程从业者：** 当你的预测任务需要**外推到未见过的高阶突变组合或不同同源蛋白**时，**不要盲目对 3B 大模型做 LoRA 微调，也不要直接对高维嵌入做逐维 Z-score 标准化**。最稳、性价比最高的首选方案是：**L2 归一化的冻结 ESM-2 650M/3B 线性探针 + 5× MLP 深集成不确定性筛选**。
 
 ### 1. 越需要“外推”，大模型冻结表征越不可替代；局部单点扫描 One-Hot 依然能打
-- 在**远距离组合外推**（`amylase/close_to_far`）、**高阶上位性外推**（`hydro/three_to_many`）和**跨同源蛋白迁移**（`hydro/to_P06241`, `to_P0A9X9`, `to_P01053`）上，传统 One-Hot 编码要么完全失效塌缩为常数（`NaN`），要么出现**负相关**（$\rho = -0.14 \sim -0.20$）；而冻结 ESM-2 650M/3B 能随参数量提升到 $\rho = 0.54\text{–}0.70$（跨蛋白也稳定正相关 $+0.26\text{–}+0.36$）。
+- 在**远距离组合外推**（`amylase/close_to_far`）、**高阶上位性外推**（`hydro/three_to_many`）和**跨同源蛋白迁移**（`hydro/to_P06241`, `to_P0A9X9`, `to_P01053`）上，传统 One-Hot 编码要么完全失效塌缩为常数（`NaN`），要么出现**负相关**（ $\rho = -0.14 \sim -0.20$ ）；而冻结 ESM-2 650M/3B 能随参数量提升到 $\rho = 0.54\text{–}0.70$（跨蛋白也稳定正相关 $+0.26\text{–}+0.36$）。
 - 反之，在单野生型局部微扰扫描（`amylase/one_to_many`）上，One-Hot 线性探针（`0.685`）依然接近冻结 3B 线性探针（`0.656`）。
 
 ![ESM-2 全尺度冻结表征探测结果](paper_figures/fig1_model_scale_probing.png)
@@ -41,7 +41,7 @@
 | `hydro / to_P0A9X9` | 跨蛋白同源迁移 | -0.176 | **0.362** | 0.154 | 0.169 ± 0.044 | **冻结 3B Ridge** |
 
 ### 4. 数据效率、NucB 未见最高活性档发现与 5× 深集成不确定性（UQ）
-- **10 倍省标注效应（图 2）**：在 `amylase/close_to_far` 上，`esm2_3b` 仅用 **10% 标注（$\rho=0.366$）** 就明显超过 `esm2_150m` 用 **100% 标注（$0.239$）**。
+- **10 倍省标注效应（图 2）**：在 `amylase/close_to_far` 上，`esm2_3b` 仅用 **10% 标注**（ $\rho = 0.366$ ）就明显超过 `esm2_150m` 用 **100% 标注**（ `0.239` ）。
 - **高活性发现外推（图 4，NucB）**：即使最高活性档 `bin=3` 在 `fit` 集中**完全未出现**，冻结 `esm2_3b` 仍将 4 分类 Macro-F1 相对 One-Hot 提升 **+51%**（`0.250 → 0.377`），高活性（`bin ≥ 2`）AUROC 达 `0.732`。
 - **选择性预测与盲区（图 3）**：用 5× MLP 集成方差丢弃最不确定的 50% 预测后，`trpb/by_position` 测试 RMSE 暴降 **−59.1% ~ −65.6%**（`std~|err| ρ ≈ 0.60`）；同时在 `hydro/to_P06241` 等跨骨架整体偏移场景下，暴露出集成方差无法捕获全局均值偏移的认知盲区。
 
