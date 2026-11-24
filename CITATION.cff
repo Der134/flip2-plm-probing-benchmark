@@ -5,7 +5,8 @@ title: "Protein Language Models Under Real Distribution Shifts (FLIP2) & Scienti
 authors:
   - alias: "Der134"
 date-released: 2026-11-24
-version: "1.0.0"
+version: "1.0.1"
+doi: "10.5281/zenodo.24496508"
 license: MIT
 repository-code: "https://github.com/Der134/flip2-plm-probing-benchmark"
 url: "https://github.com/Der134/flip2-plm-probing-benchmark"
